@@ -60,3 +60,54 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Docker
+
+* Install Docker and docker-compose
+
+copy `.env.example` to `.env` and in `.env` change the APP_URL to include the port number:
+
+```
+APP_URL=http://localhost:3000
+```
+
+Then start the docker container:
+
+```
+docker-compose up
+```
+
+In a separate terminal run
+
+```
+docker exec -it service-desk-project_myapp_1 bash
+```
+
+Inside run this:
+
+```
+php artisan key:generate
+```
+
+To create a table:
+
+```
+docker exec -it service-desk-project_myapp_1 bash
+php artisan make:controller servicecontroller
+php artisan make:model service -m
+```
+
+
+To log in to the database:
+
+```
+docker exec -it service-desk-project_mariadb_1 bash
+mysql -u my_user -p my_database     (then type in my_password)
+SELECT * FROM users;
+SELECT * FROM admin;
+```
+
+http://localhost:3000/admin/login
+http://localhost:3000/register
+
+
